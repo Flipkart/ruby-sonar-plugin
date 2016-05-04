@@ -1,4 +1,4 @@
-package com.godaddy.sonar.ruby.rules;
+package com.godaddy.sonar.ruby.metricfu.rules;
 
 /**
  * Created by akash.v on 27/04/16.

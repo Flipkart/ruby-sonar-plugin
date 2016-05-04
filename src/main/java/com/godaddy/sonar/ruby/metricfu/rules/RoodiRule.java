@@ -1,6 +1,4 @@
-package com.godaddy.sonar.ruby.rules;
-
-import org.sonar.api.rule.Severity;
+package com.godaddy.sonar.ruby.metricfu.rules;
 
 /**
  * Created by akash.v on 02/05/16.

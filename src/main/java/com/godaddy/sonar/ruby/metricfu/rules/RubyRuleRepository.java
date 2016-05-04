@@ -1,11 +1,8 @@
-package com.godaddy.sonar.ruby.rules;
+package com.godaddy.sonar.ruby.metricfu.rules;
 
 import com.godaddy.sonar.ruby.core.Ruby;
-import org.apache.commons.codec.Charsets;
 import org.sonar.api.rule.RuleStatus;
-import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
-import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

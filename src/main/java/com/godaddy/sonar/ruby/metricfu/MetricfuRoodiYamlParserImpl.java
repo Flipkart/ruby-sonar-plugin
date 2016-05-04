@@ -1,5 +1,6 @@
-package com.godaddy.sonar.ruby.rules;
+package com.godaddy.sonar.ruby.metricfu;
 
+import com.godaddy.sonar.ruby.metricfu.rules.RoodiProblem;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
@@ -7,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

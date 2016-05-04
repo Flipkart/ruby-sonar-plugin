@@ -1,6 +1,7 @@
-package com.godaddy.sonar.ruby.rules;
+package com.godaddy.sonar.ruby.metricfu.rules;
 
 import com.godaddy.sonar.ruby.RubyPlugin;
+import com.godaddy.sonar.ruby.metricfu.MetricfuRoodiYamlParser;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +13,9 @@ import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.config.Settings;
 import org.sonar.api.issue.Issuable;
-import org.sonar.api.issue.Issue;
-import org.sonar.api.measures.Measure;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.scan.filesystem.PathResolver;
-import org.sonar.batch.protocol.input.Metric;
 
 import java.io.File;
 import java.io.FileNotFoundException;

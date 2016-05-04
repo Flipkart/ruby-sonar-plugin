@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.godaddy.sonar.ruby.rules.MetricfuRoodiYamlParserImpl;
-import com.godaddy.sonar.ruby.rules.RoodiSensor;
-import com.godaddy.sonar.ruby.rules.RubyRuleRepository;
+import com.godaddy.sonar.ruby.metricfu.MetricfuRoodiYamlParserImpl;
+import com.godaddy.sonar.ruby.metricfu.rules.RoodiSensor;
+import com.godaddy.sonar.ruby.metricfu.rules.RubyRuleRepository;
 import org.sonar.api.CoreProperties;
 import org.sonar.api.Properties;
 import org.sonar.api.PropertyType;

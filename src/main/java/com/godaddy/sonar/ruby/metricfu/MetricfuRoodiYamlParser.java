@@ -1,5 +1,6 @@
-package com.godaddy.sonar.ruby.rules;
+package com.godaddy.sonar.ruby.metricfu;
 
+import com.godaddy.sonar.ruby.metricfu.rules.RoodiProblem;
 import org.sonar.api.BatchExtension;
 
 import java.io.File;
