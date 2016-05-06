@@ -90,7 +90,6 @@ public class MetricfuComplexitySensor implements Sensor
     // on that file
     if (functions.isEmpty() || functions.size() == 0 || functions == null)
     {
-      System.out.println("returning..... function"+ functions + " File"+ inputFile);
       return;
     }
 

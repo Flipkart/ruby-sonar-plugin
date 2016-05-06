@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -18,12 +19,14 @@ public class RoodiRuleParser {
     private static final String RULES_FILE = "rules.yml";
     private Yaml yaml;
     private List<RoodiRule> roodiRules;
-    private Map<Pattern,String> regexIdMap;
+    InMemoryRuleStore inMemoryRuleStore =  new InMemoryRuleStore();
+
     private static final Logger LOG = LoggerFactory
             .getLogger(RoodiRuleParser.class);
 
     public RoodiRuleParser(){
         yaml = new Yaml();
+        parse();
     }
 
     public List<RoodiRule> parse(){
@@ -34,7 +37,7 @@ public class RoodiRuleParser {
             for(Map p: (List<Map<String, String>>) yaml.load(getClass().getResourceAsStream(RULES_FILE))){
                 roodiRules.add(ruleFor(p));
             }
-            createMap();
+            updateRuleStore();
         }
 
         return roodiRules;
@@ -45,7 +48,7 @@ public class RoodiRuleParser {
         r.key = (String) p.get("key");
         r.description = (String) p.get("description");
         r.name = (String) p.get("name");
-        r.regex = (String) p.get("regex");
+        r.match = (String) p.get("match");
         r.severity = (String) p.get("severity");
         r.debtRemediationFunctionOffset = (String) p.get("debtRemediationFunctionOffset");
 
@@ -53,23 +56,14 @@ public class RoodiRuleParser {
     }
 
 
-    private void createMap() {
-        regexIdMap = Maps.newConcurrentMap();
+    private void updateRuleStore() {
         for(RoodiRule r : roodiRules){
-            regexIdMap.put(Pattern.compile(r.regex), r.key);
+            inMemoryRuleStore.addRule(r.key, r.match);
         }
     }
 
     public String getKey(String discription){
-        if(regexIdMap == null){
-            parse();
-        }
-        for(Pattern p : regexIdMap.keySet()){
-            if(p.matcher(discription).find()){
-                return regexIdMap.get(p);
-            }
-        }
-        return null;
+        return inMemoryRuleStore.findRule(discription);
     }
 
     public static void main(String[] args) {
