@@ -9,5 +9,5 @@ public class RoodiRule {
     String description;
     String severity;
     String debtRemediationFunctionOffset;
-    String regex;
+    String match;
 }

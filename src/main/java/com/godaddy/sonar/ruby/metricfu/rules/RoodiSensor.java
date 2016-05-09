@@ -37,6 +37,7 @@ public class RoodiSensor implements Sensor {
     private String                       reportPath                      = "tmp/metric_fu/report.yml";
     private PathResolver pathResolver;
     private RoodiRuleParser roodiRuleParser;
+    private InMemoryRuleStore inMemoryRuleStore;
 
     public RoodiSensor(Settings settings, FileSystem fs, ActiveRules activeRules, ResourcePerspectives resourcePerspectives, PathResolver pathResolver, MetricfuRoodiYamlParser metricfuRoodiYamlParser) {
 
@@ -47,11 +48,14 @@ public class RoodiSensor implements Sensor {
         this.pathResolver = pathResolver;
         String reportpath_prop = settings.getString(RubyPlugin.METRICFU_REPORT_PATH_PROPERTY);
         this.metricfuRoodiYamlParser = metricfuRoodiYamlParser;
+        inMemoryRuleStore =  new InMemoryRuleStore();
         if (null != reportpath_prop) {
             this.reportPath = reportpath_prop;
         }
-        roodiRuleParser = new RoodiRuleParser();
-        roodiRuleParser.parse();
+        this.roodiRuleParser = new RoodiRuleParser();
+        for(RoodiRule roodiRule: roodiRuleParser.parse()){
+            inMemoryRuleStore.addRule(roodiRule.key, roodiRule.match);
+        }
     }
 
 
@@ -75,6 +79,8 @@ public class RoodiSensor implements Sensor {
             } catch (Exception e)
             {
                 LOG.error("Can not analyze the file " + inputFile.absolutePath() + " for issues", e);
+            } finally {
+                inMemoryRuleStore.close();
             }
         }
     }
@@ -82,8 +88,8 @@ public class RoodiSensor implements Sensor {
     private void analyzeFile(InputFile inputFile, SensorContext sensorContext, File report) throws FileNotFoundException {
         List<RoodiProblem > issues= metricfuRoodiYamlParser.parse(inputFile.relativePath(), report);
         for (RoodiProblem roodiProblem: issues) {
-            if (roodiRuleParser.getKey(roodiProblem.problem) != null) {
-            RuleKey ruleKey = RuleKey.of(RubyRuleRepository.REPOSITORY_KEY, roodiRuleParser.getKey(roodiProblem.problem));
+            if (inMemoryRuleStore.findRule(roodiProblem.problem) != null) {
+            RuleKey ruleKey = RuleKey.of(RubyRuleRepository.REPOSITORY_KEY, inMemoryRuleStore.findRule(roodiProblem.problem));
             LOG.info("Rule Key: {}", ruleKey);
                 Issuable issuable = resourcePerspectives.as(Issuable.class, inputFile);
                 if (issuable != null) {

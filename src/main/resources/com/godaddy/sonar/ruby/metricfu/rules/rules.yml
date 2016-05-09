@@ -6,7 +6,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 5min"
-  regex: "Case statement is missing an else clause."
+  match: "Case statement is missing an else clause."
 -
   key: "R0002"
   name: "Class should have 300 or less lines."
@@ -14,7 +14,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 2h 5min"
-  regex: "Class \".*\" has .* lines.  It should have 300 or less"
+  match: "Class \"abc\" has 123 lines.  It should have 300 or less"
 -
   key: "R0003"
   name: "Block cyclomatic complexity should be 4 or less"
@@ -22,7 +22,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 20min"
-  regex: "Block cyclomatic complexity is .* It should be 4 or less."
+  match: "Block cyclomatic complexity is 123 It should be 4 or less."
 -
   key: "R0004"
   name: "Method cyclomatic complexity should be 8 or less."
@@ -30,7 +30,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 20min"
-  regex: "Method name \".*\" cyclomatic complexity is .* It should be 8 or less."
+  match: "Method name \"abc\" cyclomatic complexity is 123 It should be 8 or less."
 -
   key: "R0005"
   name: "Don't use 'for' loops. Use Enumerable.each instead."
@@ -38,7 +38,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 10min"
-  regex: "Don't use 'for' loops. Use Enumerable.each instead."
+  match: "Don't use 'for' loops. Use Enumerable.each instead."
 -
   key: "R0006"
   name: "Method should have 20 or less lines."
@@ -46,7 +46,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 12min"
-  regex: "Method \".*\" has .* lines. It should have 20 or less."
+  match: "Method \"abc\" has 12 lines.  It should have 20 or less."
 -
   key: "R0007"
   name: "Method name should match pattern /^[_a-z<>=\\[\\]|+-\\/\\*`]+[_a-z0-9_<>=~@\\[\\]]*[=!\\?]?$/"
@@ -54,7 +54,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 5min"
-  regex: "Method name \".*\" should match pattern .*"
+  match: "Method name \"abc\" should match pattern abc"
 -
   key: "R0008"
   name: "Method should have 5 or less parameters."
@@ -62,5 +62,5 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 15min"
-  regex: "Method name \".*\" has .* parameters.  It should have 5 or less"
+  match: "Method name \"abc\" has 123 parameters.  It should have 5 or less"
 
