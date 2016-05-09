@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.godaddy.sonar.ruby.metricfu.MetricfuRoodiYamlParserImpl;
+import com.godaddy.sonar.ruby.metricfu.rules.RoodiRuleParser;
 import com.godaddy.sonar.ruby.metricfu.rules.RoodiSensor;
 import com.godaddy.sonar.ruby.metricfu.rules.RubyRuleRepository;
 import org.sonar.api.CoreProperties;
@@ -35,14 +36,14 @@ public final class RubyPlugin extends SonarPlugin
   public List<Object> getExtensions()
   {
     List<Object> extensions = new ArrayList<Object>();
-    extensions.add(RubyRuleRepository.class);
-    extensions.add(Ruby.class);
-    extensions.add(SimpleCovRcovSensor.class);
-    extensions.add(SimpleCovRcovJsonParserImpl.class);
-    extensions.add(MetricfuComplexityYamlParserImpl.class);
-    extensions.add(RubySourceCodeColorizer.class);
-    extensions.add(RubySensor.class);
-    extensions.add(MetricfuComplexitySensor.class);
+
+      extensions.add(Ruby.class);
+      extensions.add(SimpleCovRcovSensor.class);
+      extensions.add(SimpleCovRcovJsonParserImpl.class);
+      extensions.add(MetricfuComplexityYamlParserImpl.class);
+      extensions.add(RubySourceCodeColorizer.class);
+      extensions.add(RubySensor.class);
+      extensions.add(MetricfuComplexitySensor.class);
 
     // Profiles
     extensions.add(SonarWayProfile.class);
@@ -80,6 +81,9 @@ public final class RubyPlugin extends SonarPlugin
         .options(options)
         .build();
     extensions.add(ComplexityMetric);
+
+      extensions.add(RubyRuleRepository.class);
+
       extensions.add(MetricfuRoodiYamlParserImpl.class);
       extensions.add(RoodiSensor.class);
 //      extensions.add(MetricfuDuplicationSensor.class);

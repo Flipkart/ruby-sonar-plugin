@@ -34,8 +34,8 @@ public class InMemoryRuleStore {
     private IndexWriter indexWriter;
 
     public InMemoryRuleStore(){
-        analyzer = new StandardAnalyzer(Version.LUCENE_42);
-        config = new IndexWriterConfig(Version.LUCENE_42, analyzer);
+        analyzer = new StandardAnalyzer(Version.LUCENE_43);
+        config = new IndexWriterConfig(Version.LUCENE_43, analyzer);
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
         ramDirectory = new RAMDirectory();
@@ -68,7 +68,7 @@ public class InMemoryRuleStore {
 
             MoreLikeThis mlt = new MoreLikeThis(reader);
             mlt.setAnalyzer(analyzer);
-            mlt.setFieldNames(new String[]{"description", "ruleId"});
+            mlt.setFieldNames(new String[]{"description"});
             mlt.setMinTermFreq(0);
             mlt.setMinDocFreq(0);
 

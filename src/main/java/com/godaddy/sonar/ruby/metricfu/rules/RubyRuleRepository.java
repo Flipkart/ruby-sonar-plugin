@@ -14,15 +14,17 @@ public class RubyRuleRepository implements RulesDefinition {
 
     public static final String REPOSITORY_NAME = "Roodi";
     public static final String REPOSITORY_KEY = REPOSITORY_NAME;
-    RoodiRuleParser roodiRuleParser = new RoodiRuleParser();
+    RoodiRuleParser roodiRuleParser;
+
+    public RubyRuleRepository(){
+        this.roodiRuleParser = new RoodiRuleParser();
+    }
 
     @ParametersAreNonnullByDefault
     public void define(Context context) {
         NewRepository repository = context
                 .createRepository(REPOSITORY_KEY, Ruby.KEY)
                 .setName(REPOSITORY_NAME);
-
-        roodiRuleParser = new RoodiRuleParser();
 
         for(RoodiRule rule : roodiRuleParser.parse()){
             NewRule newRule = repository.createRule(rule.key)
@@ -33,7 +35,6 @@ public class RubyRuleRepository implements RulesDefinition {
             newRule.setDebtSubCharacteristic(SubCharacteristics.LOGIC_RELIABILITY)
                     .setDebtRemediationFunction(newRule.debtRemediationFunctions().constantPerIssue(rule.debtRemediationFunctionOffset));
         }
-
 
         repository.done();
     }

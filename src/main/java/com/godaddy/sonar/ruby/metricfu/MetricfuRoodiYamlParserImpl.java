@@ -49,9 +49,4 @@ public class MetricfuRoodiYamlParserImpl implements MetricfuRoodiYamlParser {
     private RoodiProblem getProblem(Map<String, String> problem) {
         return new RoodiProblem(problem.get(":file"), Integer.parseInt(problem.get(":line")), problem.get(":problem"));
     }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        MetricfuRoodiYamlParser parser= new MetricfuRoodiYamlParserImpl();
-        List<RoodiProblem> problems = parser.parse("app/builders/fulfillment_model_builder_factory.rb", new File("/Users/akash.v/Sources/office/symphony/tmp/metric_fu/report.yml"));
-    }
 }

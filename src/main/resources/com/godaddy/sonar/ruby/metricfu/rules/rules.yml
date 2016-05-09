@@ -46,7 +46,7 @@
   severity: "MINOR"
   status: "READY"
   debtRemediationFunctionOffset: "0d 0h 12min"
-  match: "Method \"abc\" has abc lines. It should have 20 or less."
+  match: "Method \"abc\" has 12 lines.  It should have 20 or less."
 -
   key: "R0007"
   name: "Method name should match pattern /^[_a-z<>=\\[\\]|+-\\/\\*`]+[_a-z0-9_<>=~@\\[\\]]*[=!\\?]?$/"
