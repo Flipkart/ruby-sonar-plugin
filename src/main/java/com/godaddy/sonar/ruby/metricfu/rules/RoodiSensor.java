@@ -79,6 +79,8 @@ public class RoodiSensor implements Sensor {
             } catch (Exception e)
             {
                 LOG.error("Can not analyze the file " + inputFile.absolutePath() + " for issues", e);
+            } finally {
+                inMemoryRuleStore.close();
             }
         }
     }

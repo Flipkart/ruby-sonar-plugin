@@ -32,10 +32,11 @@ public class InMemoryRuleStore {
     private StandardAnalyzer analyzer;
     private IndexWriterConfig config;
     private IndexWriter indexWriter;
+    private IndexReader reader;
 
     public InMemoryRuleStore(){
         analyzer = new StandardAnalyzer(Version.LUCENE_43);
-        config = new IndexWriterConfig(Version.LUCENE_43, analyzer);
+        config = new IndexWriterConfig(Version.LUCENE_43    , analyzer);
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
         ramDirectory = new RAMDirectory();
@@ -61,9 +62,10 @@ public class InMemoryRuleStore {
     }
 
     public String findRule(String searchForSimilar) {
-        IndexReader reader = null;
         try {
-            reader = DirectoryReader.open(ramDirectory);
+            if(reader ==null){
+                reader = DirectoryReader.open(ramDirectory);
+            }
             IndexSearcher indexSearcher = new IndexSearcher(reader);
 
             MoreLikeThis mlt = new MoreLikeThis(reader);
@@ -75,7 +77,6 @@ public class InMemoryRuleStore {
             Reader sReader = new StringReader(searchForSimilar);
             Query query = mlt.like(sReader, null);
             TopDocs topDocs = indexSearcher.search(query, 1);
-
             if(topDocs.scoreDocs.length > 0)
                 return indexSearcher.doc(topDocs.scoreDocs[0].doc).get("ruleId");
 
@@ -86,5 +87,14 @@ public class InMemoryRuleStore {
         return null;
     }
 
+    public void close() {
+        try {
+            reader.close();
+            ramDirectory.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
