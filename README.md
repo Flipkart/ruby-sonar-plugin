@@ -31,11 +31,7 @@ this will run all metrics. At the very least, Saikuro/Cane and Hotspots metrics 
 * Code Violations
 
 ##Giving Credit
-The github project [pica/ruby-sonar-plugin](https://github.com/pica/ruby-sonar-plugin), is where the ruby-sonar-plugin started, rather than reinvent the wheel, we thought it better to enhance it.
-We used that plugin as a starting point for basic stats, then, updated the references to their latest versions and added additional metrics like line-by-line code coverage and code complexity.
-
-We referenced the [javascript sonar plugin](https://github.com/SonarCommunity/sonar-javascript) and the [php sonar plugin](https://github.com/SonarCommunity/sonar-php) for complexity and coverage implementation.
-Our complexity sensor and code coverage sensor borrow heavily from the javascript plugin's equivalent sensors.
+This is forked from GoDaddy-Hosting/ruby-sonar-plugin.git, enhanced it by adding sensors for design violations provides by roodi.
 
 ##Tool Versions
 This plugin has been tested with the following dependency versions
