@@ -31,7 +31,7 @@ this will run all metrics. At the very least, Saikuro/Cane and Hotspots metrics 
 * Code Violations
 
 ##Giving Credit
-This is forked from GoDaddy-Hosting/ruby-sonar-plugin.git, enhanced it by adding sensors for design violations provides by roodi.
+This is forked from GoDaddy-Hosting/ruby-sonar-plugin.git, enhanced it by adding sensors for design violations provides by roodi. Fixed bugs to make it compatible with different types of simplecov-rcov reports, populate complexity.
 
 ##Tool Versions
 This plugin has been tested with the following dependency versions
